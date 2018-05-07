@@ -1,15 +1,29 @@
-name: my-snap-name # you probably want to 'snapcraft register <name>'
-version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
-summary: Single-line elevator pitch for your amazing snap # 79 char long summary
+name: clonehero # you probably want to 'snapcraft register <name>'
+version: '0.20' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Clone Hero is a Unity-based Guitar Hero clone # 79 char long summary
 description: |
-  This is my-snap's description. You have a paragraph or two to tell the
-  most important story about your snap. Keep it under 100 words though,
-  we live in tweetspace and your description wants to look good in the snap
-  store.
+  This is a Guitar Hero clone based on Unity. It supports custom songs and 
+  a plethora of USB Guitar Controllers. 
 
 confinement: devmode # use 'strict' once you have the right plugs and slots
+architectures: [amd64]
 
 parts:
-  my-part:
-    # See 'snapcraft plugins'
-    plugin: nil
+ clonehero:
+  plugin: dump
+  source: https://personal.littlejth.com/nextcloud/index.php/s/KHLRKLCSkkys9PE/download
+  source-type: tar
+  stage-packages:
+    - mono-runtime
+    - libgtk2.0-0
+    - libstdc++6
+    - libc6
+    - libgcc1
+    - gccgo-6
+apps:
+ clonehero:
+  command: 'Clone\ Hero.x86_64'
+  plugs:
+   - x11
+   - pulseaudio
+   - opengl
